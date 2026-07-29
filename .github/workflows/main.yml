@@ -1,0 +1,48 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: npm test
+
+  tosca-test:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Pobierz Tosca Execution Client
+        run: git clone https://github.com/Tricentis/ToscaExecutionClient.git
+      - name: Uruchom test w Tosca Cloud
+        env:
+          CLIENT_ID: ${{ secrets.TOSCA_CLIENT_ID }}
+          CLIENT_SECRET: ${{ secrets.TOSCA_CLIENT_SECRET }}
+          API_URL: ${{ secrets.TOSCA_API_URL }}
+        run: |
+          bash ToscaExecutionClient/tosca_execution_client.sh \
+            --url "$API_URL" \
+            --clientId "$CLIENT_ID" \
+            --clientSecret "$CLIENT_SECRET" \
+            --events "MojEvent"
+
+  deploy:
+    needs: [test, tosca-test]
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+      - uses: actions/deploy-pages@v4
