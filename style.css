@@ -1,0 +1,41 @@
+body {
+  font-family: system-ui, sans-serif;
+  background: #f4f6f8;
+  color: #1a1a1a;
+  display: flex;
+  justify-content: center;
+  padding-top: 4rem;
+}
+
+main {
+  background: white;
+  padding: 2rem 3rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  text-align: center;
+}
+
+.calc {
+  margin-top: 1.5rem;
+}
+
+.calc input {
+  width: 60px;
+  padding: 0.4rem;
+  margin: 0 0.3rem;
+}
+
+.calc button {
+  padding: 0.4rem 1rem;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+}
+
+#result {
+  margin-top: 1rem;
+  font-weight: bold;
+}
