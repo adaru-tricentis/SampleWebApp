@@ -1,32 +1,39 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Moja prosta strona</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nova Store – Products</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E%E2%97%86%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
-  <main>
-    <h1>Witaj w moim CI/CD demo!</h1>
-    <p>Ta strona jest hostowana przez GitHub Pages.</p>
+<body data-page="products">
+  <header class="topbar">
+    <a href="index.html" class="logo" id="logo" data-testid="logo">◆ Nova Store</a>
+    <nav>
+      <a href="index.html" class="nav-link active" id="nav-products" data-testid="nav-products">Products</a>
+      <a href="cart.html" class="cart-link" id="nav-cart" data-testid="nav-cart">
+        Cart <span class="badge" id="cart-count" data-testid="cart-count">0</span>
+      </a>
+    </nav>
+  </header>
 
-    <div class="calc">
-      <input id="a" type="number" value="2">
-      <span>+</span>
-      <input id="b" type="number" value="3">
-      <button id="calcBtn">Policz</button>
-      <p id="result"></p>
+  <main class="container">
+    <section class="hero">
+      <h1>New season essentials</h1>
+      <p>Minimal gear for everyday life. Free shipping on all orders.</p>
+    </section>
+
+    <div class="toolbar">
+      <input type="search" id="search" data-testid="search" placeholder="Search products…" aria-label="Search products" />
     </div>
+
+    <section class="grid" id="product-list" data-testid="product-list"></section>
+    <p class="empty hidden" id="no-results" data-testid="no-results">No products match your search.</p>
   </main>
 
-  <script src="script.js"></script>
-  <script>
-    document.getElementById('calcBtn').addEventListener('click', () => {
-      const a = Number(document.getElementById('a').value);
-      const b = Number(document.getElementById('b').value);
-      document.getElementById('result').textContent = 'Wynik: ' + add(a, b);
-    });
-  </script>
+  <div class="toast" id="toast" data-testid="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
 </body>
 </html>

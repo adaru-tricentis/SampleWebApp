@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nova Store – Cart</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E%E2%97%86%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="cart">
+  <header class="topbar">
+    <a href="index.html" class="logo" id="logo" data-testid="logo">◆ Nova Store</a>
+    <nav>
+      <a href="index.html" class="nav-link" id="nav-products" data-testid="nav-products">Products</a>
+      <a href="cart.html" class="cart-link active" id="nav-cart" data-testid="nav-cart">
+        Cart <span class="badge" id="cart-count" data-testid="cart-count">0</span>
+      </a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1 class="page-title">Your cart</h1>
+
+    <div class="cart-layout">
+      <section id="cart-items" class="cart-items" data-testid="cart-items"></section>
+
+      <aside class="summary" id="cart-summary" data-testid="cart-summary">
+        <h2>Summary</h2>
+        <div class="row"><span>Items</span><span id="summary-items" data-testid="summary-items">0</span></div>
+        <div class="row"><span>Subtotal</span><span id="summary-subtotal" data-testid="summary-subtotal">$0.00</span></div>
+        <div class="row"><span>Shipping</span><span id="summary-shipping" data-testid="summary-shipping">Free</span></div>
+        <div class="row total"><span>Total</span><span id="summary-total" data-testid="summary-total">$0.00</span></div>
+        <button class="btn primary block" id="checkout-btn" data-testid="checkout-btn">Checkout</button>
+        <button class="btn ghost block" id="clear-cart-btn" data-testid="clear-cart-btn">Clear cart</button>
+      </aside>
+    </div>
+
+    <div class="empty-cart hidden" id="empty-cart" data-testid="empty-cart">
+      <div class="empty-icon">🛒</div>
+      <p>Your cart is empty.</p>
+      <a href="index.html" class="btn primary" id="continue-shopping" data-testid="continue-shopping">Continue shopping</a>
+    </div>
+
+    <div class="success hidden" id="order-success" data-testid="order-success">
+      <div class="empty-icon">✅</div>
+      <h2>Thank you for your order!</h2>
+      <p>Order number: <strong id="order-number" data-testid="order-number"></strong></p>
+      <a href="index.html" class="btn primary" id="back-to-shop" data-testid="back-to-shop">Back to shop</a>
+    </div>
+  </main>
+
+  <div class="toast" id="toast" data-testid="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
